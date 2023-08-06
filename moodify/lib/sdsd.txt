@@ -1,0 +1,136 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  List<Widget> _pages = [
+    PageOne(),
+    PageTwo(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter App'),
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+          ),
+        ),
+      ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PageOne extends StatelessWidget {
+  final Color columnColor = Colors.blue; // Define the column color here
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: columnColor, // Set the column color here
+      child: Column(
+        children: [
+          Expanded(
+            flex: 5,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text('Block 1'),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text('Block 2'),
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text('Block 3'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PageTwo extends StatelessWidget {
+  final Color columnColor = Colors.blue; // Define the column color here
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: columnColor, // Set the column color here
+      child: Column(
+        children: [
+          Expanded(
+            flex: 5,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text('Block 1'),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text('Block 2'),
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text('Block 3'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

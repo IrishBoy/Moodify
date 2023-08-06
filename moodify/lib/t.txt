@@ -1,0 +1,212 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MoodifyApp());
+}
+
+class MoodifyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  // ignore: library_private_types_in_public_api
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  List<Widget> _pages = [
+    PageOne(),
+    PageTwo(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text('Flutter App'),
+      // ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class PageOne extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 5,
+          child: Container(
+            color: Colors.red,
+            alignment: Alignment.center,
+            child: Text('Block 1'),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: Container(
+            color: Colors.green,
+            alignment: Alignment.center,
+            child: Text('Block 2'),
+          ),
+        ),
+        Expanded(
+          flex: 4,
+          child: Container(
+            color: Colors.blue,
+            alignment: Alignment.center,
+            child: Text('Block 3'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PageTwo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 5,
+          child: Container(
+            color: Colors.orange,
+            alignment: Alignment.center,
+            child: Text('Block 1'),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: Container(
+            color: Colors.yellow,
+            alignment: Alignment.center,
+            child: Text('Block 2'),
+          ),
+        ),
+        Expanded(
+          flex: 4,
+          child: Container(
+            color: Colors.purple,
+            alignment: Alignment.center,
+            child: Text('Block 3'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+/// Flutter code sample for [BottomNavigationBar].
+
+void main() => runApp(const MoodifyApp());
+
+class MoodifyApp extends StatelessWidget {
+  const MoodifyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: MoodifyAppState(),
+    );
+  }
+}
+
+class MoodifyAppState extends StatefulWidget {
+  const MoodifyAppState({super.key});
+
+  @override
+  State<MoodifyAppState> createState() => _MoodifyAppStateState();
+}
+
+class _MoodifyAppStateState extends State<MoodifyAppState> {
+  // FontWeight weight = FontWeight;
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static List<Widget> _widgetOptions = <Widget>[
+    Text(
+      '''HOW DO YOUFEEL?''',
+      // textWidthBasis: 360,
+      style: GoogleFonts.inter(
+        color: Color.fromRGBO(255, 255, 255, 0.65),
+        fontWeight: FontWeight.lerp(FontWeight.w600, FontWeight.w700, 0.37),
+        // textAlignCenter: TextAlignCenter,
+        letterSpacing: 32.0,
+        fontSize: 64,
+      ),
+      textAlign: TextAlign.center,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // appBar: AppBar(
+      //   // title: const Text('BottomNavigationBar Sample'),
+      // ),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 100),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromRGBO(255, 255, 255, 0.65),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        unselectedItemColor: Color.fromRGBO(255, 255, 255, 1),
+        selectedItemColor: Color.fromRGBO(217, 217, 217, 1),
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}
