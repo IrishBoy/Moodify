@@ -12,7 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.9
-  flutter_chart: ^0.3.2
+  # flutter_chart: ^0.3.2
+  intl: ^0.17.0
 
   english_words: ^4.0.0
   provider: ^6.0.0
