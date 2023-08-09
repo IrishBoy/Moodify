@@ -36,8 +36,8 @@ class _SliderBlockState extends State<SliderBlock> {
             thumbColor: Color.fromRGBO(217, 217, 217, 1),
             activeColor: Color.fromRGBO(255, 255, 255, 0.65),
             inactiveColor: Color.fromRGBO(255, 255, 255, 0.65),
-            min: 0.0,
-            max: 100.0,
+            min: -50.0,
+            max: 50.0,
           ),
         ),
         Padding(

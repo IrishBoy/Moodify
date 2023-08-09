@@ -38,10 +38,7 @@ class _SetScreenState extends State<SetScreen> {
   void _onButtonTap() {
     setState(() {
       _isButtonTapped = true;
-      // Save the current slider value to the array
       _storeValue();
-      // Add any other actions you want to perform when the button is tapped
-      // printSavedValues(); // Call a function to print the array
     });
 
     // Remove overlay effect after 1 second
@@ -52,18 +49,10 @@ class _SetScreenState extends State<SetScreen> {
     });
   }
 
-  // void printSavedValues() {
-  //   // Print the array of saved values and timestamps to the console
-  //   _sliderValues.forEach((data) {
-  //     print(
-  //         '${data.value} set at ${data.time}, length: ${_sliderValues.length}');
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromRGBO(0, 0, 0, 100),
+      color: Colors.black,
       child: Column(
         children: [
           Expanded(
@@ -72,7 +61,6 @@ class _SetScreenState extends State<SetScreen> {
               alignment: Alignment.center,
               child: Text(
                 '''HOW\nDO\nYOU\nFEEL?''',
-                // textWidthBasis: 360,
                 style: GoogleFonts.inter(
                   color: Color.fromRGBO(255, 255, 255, 0.65),
                   fontWeight:
@@ -112,19 +100,12 @@ class _SetScreenState extends State<SetScreen> {
                     top: 10,
                     child: GestureDetector(
                       onTap: _onButtonTap,
-                      // onTapCancel: _resetButtonTap,
-                      // onTapUp: (_) => _resetButtonTap(),
                       child: CircleAvatar(
                         radius: 65,
                         backgroundColor: Color.fromRGBO(217, 217, 217, 1),
-                        // child: Icon(
-                        //   Icons.add,
-                        //   color: Colors.white,
-                        // ),
                       ),
                     ),
                   ),
-                  // Overlay Shape
                   if (_isButtonTapped)
                     Positioned(
                       top: 5,
