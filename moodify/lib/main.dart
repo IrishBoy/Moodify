@@ -72,19 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
             showUnselectedLabels: false,
             unselectedItemColor: Color.fromRGBO(255, 255, 255, 1),
             selectedItemColor: Color.fromRGBO(217, 217, 217, 1),
-            // onTap: (index) {
-            //   if (index == 1) {
-            //     // Manually load data when navigating to the History screen
-            //     Provider.of<DataList>(context, listen: false).loadData();
-            //   }
-            //   // Change the screen according to the navigation bar
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) =>
-            //             index == 0 ? SetScreen() : HistoryScreen()),
-            //   );
-            // },
           ),
         ),
       ),

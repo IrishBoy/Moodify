@@ -18,7 +18,34 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     List<DataModel> dataList = Provider.of<DataList>(context).dataList;
+    List<DataModel> dataEntries = [
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 1)).toString(),
+          value: 25),
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 1)).toString(),
+          value: -25),
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 1)).toString(),
+          value: 25),
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 1)).toString(),
+          value: -25), // Yesterday
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 2)).toString(),
+          value: 25), // Day before yesterday
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 7)).toString(),
+          value: 25),
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 10)).toString(),
+          value: 0),
+      DataModel(
+          timestamp: DateTime.now().subtract(Duration(days: 30)).toString(),
+          value: -50),
+    ];
 
+    dataList.addAll(dataEntries);
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('History Screen'),
@@ -28,14 +55,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
         child: Column(
           children: [
             Expanded(
-              flex: 5,
+              flex: 7,
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(5.0),
                 child: HistoryChart(dataList: dataList),
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Container(
                 alignment: Alignment.center,
                 child: Text(

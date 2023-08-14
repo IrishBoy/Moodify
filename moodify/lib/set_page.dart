@@ -17,7 +17,7 @@ class SetScreen extends StatefulWidget {
 class _SetScreenState extends State<SetScreen> {
 // Array to store slider values and their timestamps
 
-  double _currentSliderValue = 50; // Variable to store the current slider value
+  double _currentSliderValue = 0; // Variable to store the current slider value
 
   void _storeValue() async {
     String timestamp = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
