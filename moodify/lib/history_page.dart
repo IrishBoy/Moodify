@@ -25,7 +25,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           value: 25),
       DataModel(
           timestamp: DateTime.now().subtract(Duration(days: 1)).toString(),
-          value: -25),
+          value: 25),
       DataModel(
           timestamp: DateTime.now().subtract(Duration(days: 1)).toString(),
           value: 25),

@@ -12,21 +12,6 @@ class HistoryChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<ChartSampleData> chartDataDetailed = dataList.map((entry) {
-      return ChartSampleData(DateTime.parse(entry.timestamp), entry.value);
-    }).toList();
-
-    DateTime initialVisibleMinimum;
-    DateTime initialVisibleMaximum;
-    if (chartDataDetailed.isNotEmpty) {
-      initialVisibleMinimum = chartDataDetailed
-          .first.timestamp; // Show data from the first timestamp
-      initialVisibleMaximum = chartDataDetailed.last.timestamp;
-    } else {
-      initialVisibleMaximum = DateTime.now();
-      initialVisibleMinimum =
-          DateTime.now().subtract(Duration(days: 7)); // Default to 7 days ago
-    }
     final Map<DateTime, Map<int, List<double>>> groupedData = {};
 
     for (var entry in dataList) {
@@ -62,8 +47,8 @@ class HistoryChart extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      // physics: scrollphysics(),
-      child: Container(
+      reverse: true,
+      child: SizedBox(
         width: 7 * 24 * 15,
         child: SfCartesianChart(
           plotAreaBorderWidth: 0,
@@ -73,12 +58,8 @@ class HistoryChart extends StatelessWidget {
                 color: Color.fromRGBO(255, 255, 255, 0.64),
                 dashArray: <double>[5, 5],
               ),
-              // borderColor:
-              autoScrollingMode: AutoScrollingMode.end,
-              visibleMaximum: initialVisibleMaximum,
-              visibleMinimum: initialVisibleMinimum,
+              autoScrollingMode: AutoScrollingMode.start,
               majorGridLines: MajorGridLines(width: 0),
-              // autoScrollingDelta: 7,
               intervalType: DateTimeIntervalType.days,
               autoScrollingDeltaType: DateTimeIntervalType.days,
               crossesAt: 0),
