@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:provider/provider.dart';
+import 'circle_average.dart';
 import 'data_saver.dart';
 import 'set_page.dart';
 
@@ -55,7 +56,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         child: Column(
           children: [
             Expanded(
-              flex: 7,
+              flex: 4,
               child: Padding(
                 padding: EdgeInsets.all(5.0),
                 child: HistoryChart(dataList: dataList),
@@ -79,26 +80,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ),
             Expanded(
               flex: 4,
-              child: Container(
-                padding: EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  itemCount: dataList.length,
-                  itemBuilder: (context, index) {
-                    final value = dataList[index].value;
-                    final timestamp = dataList[index].timestamp;
-                    return ListTile(
-                      title: Text(
-                        'Value: $value',
-                        style: TextStyle(
-                            color: Colors.white), // Set the font color to white
-                      ),
-                      subtitle: Text(
-                        'Timestamp: $timestamp',
-                        style: TextStyle(
-                            color: Colors.white), // Set the font color to white
-                      ),
-                    );
-                  },
+              child: Padding(
+                padding: EdgeInsets.only(top: 0, bottom: 40),
+                child: CircularOptionsWheel(
+                  options: ['Today', 'Yesterday', 'Week', 'Month', 'All Time'],
+                  dataList: dataList,
+                  // calculateAverage(dataList), // Implement this function
                 ),
               ),
             ),
