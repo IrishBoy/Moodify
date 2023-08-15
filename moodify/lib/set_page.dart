@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +15,7 @@ class SetScreen extends StatefulWidget {
   _SetScreenState createState() => _SetScreenState();
 }
 
-class _SetScreenState extends State<SetScreen> {
+class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
 // Array to store slider values and their timestamps
 
   double _currentSliderValue = 0; // Variable to store the current slider value
@@ -34,6 +35,9 @@ class _SetScreenState extends State<SetScreen> {
   }
 
   bool _isButtonTapped = false;
+  Future<void>? _delayedFuture;
+
+  late Ticker _ticker;
 
   void _onButtonTap() {
     setState(() {
@@ -41,12 +45,26 @@ class _SetScreenState extends State<SetScreen> {
       _storeValue();
     });
 
-    // Remove overlay effect after 1 second
+    // Call the delayed callback after a second
     Future.delayed(Duration(seconds: 1), () {
-      setState(() {
-        _isButtonTapped = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isButtonTapped = false;
+        });
+      }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _delayedFuture = Future.value(); // Initialize the Future
+  }
+
+  @override
+  void dispose() {
+    _delayedFuture = Future.value(); // Cancel the Future
+    super.dispose();
   }
 
   @override
@@ -100,6 +118,7 @@ class _SetScreenState extends State<SetScreen> {
                     top: 10,
                     child: GestureDetector(
                       onTap: _onButtonTap,
+                      // onTapUp: _onTapUp,
                       child: CircleAvatar(
                         radius: 65,
                         backgroundColor: Color.fromRGBO(217, 217, 217, 1),
