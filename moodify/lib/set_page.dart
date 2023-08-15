@@ -1,9 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'data_saver.dart';
 import 'slider.dart';
 import 'vars.dart';
@@ -36,8 +34,6 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
 
   bool _isButtonTapped = false;
   Future<void>? _delayedFuture;
-
-  late Ticker _ticker;
 
   void _onButtonTap() {
     setState(() {
