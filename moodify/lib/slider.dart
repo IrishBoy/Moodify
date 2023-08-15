@@ -15,45 +15,65 @@ class SliderBlock extends StatefulWidget {
 class _SliderBlockState extends State<SliderBlock> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final sliderWidth = screenWidth * 0.8; // 80% of the screen width
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SliderTheme(
-          data: SliderThemeData(
-            thumbShape: RoundSliderThumbShape(
-                enabledThumbRadius: 16.0,
-                pressedElevation: 0,
-                elevation: 0,
-                disabledThumbRadius: 16),
-            trackShape: RectangularSliderTrackShape(),
-            trackHeight: 5.0,
-            overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
-          ),
-          child: Slider(
-            value: widget.sliderValue,
-            onChanged: widget.onChanged,
-            thumbColor: Color.fromRGBO(217, 217, 217, 1),
-            activeColor: Color.fromRGBO(255, 255, 255, 0.65),
-            inactiveColor: Color.fromRGBO(255, 255, 255, 0.65),
-            min: -50.0,
-            max: 50.0,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
+        Stack(
+          alignment: Alignment.bottomLeft,
+          children: [
+            SliderTheme(
+              data: SliderThemeData(
+                thumbShape: RoundSliderThumbShape(
+                  enabledThumbRadius: 16.0,
+                  pressedElevation: 0,
+                  elevation: 0,
+                  disabledThumbRadius: 16,
+                ),
+                trackShape: RectangularSliderTrackShape(),
+                trackHeight: 5.0,
+                overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
+              ),
+              child: Container(
+                width: sliderWidth,
+                child: Slider(
+                  value: widget.sliderValue,
+                  onChanged: widget.onChanged,
+                  thumbColor: Color.fromRGBO(217, 217, 217, 1),
+                  activeColor: Color.fromRGBO(255, 255, 255, 0.65),
+                  inactiveColor: Color.fromRGBO(255, 255, 255, 0.65),
+                  min: -50.0,
+                  max: 50.0,
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              child: Text(
                 'AWFUL',
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.inter(
+                  color: Color.fromRGBO(217, 217, 217, 1),
+                  fontWeight:
+                      FontWeight.lerp(FontWeight.w600, FontWeight.w700, 0.37),
+                  fontSize: 10,
+                ),
               ),
-              Text(
+            ),
+            Positioned(
+              right: 0,
+              child: Text(
                 'GREAT',
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.inter(
+                  color: Color.fromRGBO(217, 217, 217, 1),
+                  fontWeight:
+                      FontWeight.lerp(FontWeight.w600, FontWeight.w700, 0.37),
+                  fontSize: 10,
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );

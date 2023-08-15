@@ -108,8 +108,12 @@ double calculateAverage(List<DataModel> dataList, String period) {
       break;
     case 'All Time':
     default:
-      dataList.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-      startDateTime = DateTime.parse(dataList.first.timestamp);
+      if (dataList.isNotEmpty) {
+        dataList.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+        startDateTime = DateTime.parse(dataList.first.timestamp);
+      } else {
+        return 0;
+      }
   }
 
   List<DataModel> filteredList = dataList

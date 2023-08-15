@@ -12,7 +12,7 @@ class HistoryChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<DateTime, Map<int, List<double>>> groupedData = {};
+    Map<DateTime, Map<int, List<double>>> groupedData = {};
 
     for (var entry in dataList) {
       final timestamp = DateTime.parse(entry.timestamp).toLocal();
@@ -32,18 +32,25 @@ class HistoryChart extends StatelessWidget {
         };
       }
     }
-
-    // Calculate average values for each date and hour
     final List<ChartSampleData> chartData = [];
-    groupedData.forEach((dateHourKey, hourValues) {
-      final averageValue = hourValues.entries
-              .map((entry) =>
-                  entry.value.reduce((a, b) => a + b) / entry.value.length)
-              .reduce((a, b) => a + b) /
-          hourValues.length;
+    if (groupedData.length > 1) {
+      // Calculate average values for each date and hour
 
-      chartData.add(ChartSampleData(dateHourKey, averageValue));
-    });
+      groupedData.forEach((dateHourKey, hourValues) {
+        final averageValue = hourValues.entries
+                .map((entry) =>
+                    entry.value.reduce((a, b) => a + b) / entry.value.length)
+                .reduce((a, b) => a + b) /
+            hourValues.length;
+
+        chartData.add(ChartSampleData(dateHourKey, averageValue));
+      });
+    } else {
+      for (var element in dataList) {
+        chartData.add(
+            ChartSampleData(DateTime.parse(element.timestamp), element.value));
+      }
+    }
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
