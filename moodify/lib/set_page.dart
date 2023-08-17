@@ -71,7 +71,7 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
       child: Column(
         children: [
           Expanded(
-            flex: 6,
+            flex: 5,
             child: Container(
               alignment: Alignment.center,
               child: Text(
@@ -89,7 +89,7 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
             ),
           ),
           Expanded(
-            flex: 1,
+            flex: 3,
             child: Container(
               alignment: Alignment.center,
               child: SliderBlock(

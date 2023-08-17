@@ -16,7 +16,7 @@ class _SliderBlockState extends State<SliderBlock> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final sliderWidth = screenWidth * 0.8; // 80% of the screen width
+    final sliderWidth = screenWidth * 0.85; // 80% of the screen width
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -24,33 +24,37 @@ class _SliderBlockState extends State<SliderBlock> {
         Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            SliderTheme(
-              data: SliderThemeData(
-                thumbShape: RoundSliderThumbShape(
-                  enabledThumbRadius: 16.0,
-                  pressedElevation: 0,
-                  elevation: 0,
-                  disabledThumbRadius: 16,
+            SizedBox(
+              width: sliderWidth,
+              child: SliderTheme(
+                data: SliderThemeData(
+                  thumbShape: RoundSliderThumbShape(
+                    enabledThumbRadius: 25.0,
+                    pressedElevation: 0,
+                    elevation: 0,
+                    disabledThumbRadius: 16,
+                  ),
+                  trackShape: RectangularSliderTrackShape(),
+                  trackHeight: 5.0,
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
                 ),
-                trackShape: RectangularSliderTrackShape(),
-                trackHeight: 5.0,
-                overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
-              ),
-              child: SizedBox(
-                width: sliderWidth,
-                child: Slider(
-                  value: widget.sliderValue,
-                  onChanged: widget.onChanged,
-                  thumbColor: Color.fromRGBO(217, 217, 217, 1),
-                  activeColor: Color.fromRGBO(255, 255, 255, 0.65),
-                  inactiveColor: Color.fromRGBO(255, 255, 255, 0.65),
-                  min: -50.0,
-                  max: 50.0,
+                child: SizedBox(
+                  width: sliderWidth * 0.9,
+                  child: Slider(
+                    value: widget.sliderValue,
+                    onChanged: widget.onChanged,
+                    thumbColor: Color.fromRGBO(217, 217, 217, 1),
+                    activeColor: Color.fromRGBO(255, 255, 255, 0.65),
+                    inactiveColor: Color.fromRGBO(255, 255, 255, 0.65),
+                    min: -50.0,
+                    max: 50.0,
+                  ),
                 ),
               ),
             ),
             Positioned(
               left: 0,
+              // top: 0,
               child: Text(
                 'AWFUL',
                 style: GoogleFonts.inter(
@@ -63,6 +67,7 @@ class _SliderBlockState extends State<SliderBlock> {
             ),
             Positioned(
               right: 0,
+              // bottom: 40,
               child: Text(
                 'GREAT',
                 style: GoogleFonts.inter(

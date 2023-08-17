@@ -52,6 +52,11 @@ class HistoryChart extends StatelessWidget {
       }
     }
 
+    chartData.forEach((element) {
+      print(element.value);
+      print(element.timestamp);
+    });
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       reverse: true,
@@ -71,8 +76,8 @@ class HistoryChart extends StatelessWidget {
               autoScrollingDeltaType: DateTimeIntervalType.days,
               crossesAt: 0),
           primaryYAxis: NumericAxis(
-            visibleMaximum: 60,
-            visibleMinimum: -60,
+            visibleMaximum: 200,
+            visibleMinimum: -200,
             isVisible: false,
             majorGridLines: MajorGridLines(width: 0),
           ),
