@@ -16,6 +16,7 @@ dependencies:
   intl: ^0.18.0
   # charts_flutter: ^0.12.0
   syncfusion_flutter_charts: ^22.2.8
+  flutter_launcher_icons: "^0.13.1"
 
   english_words: ^4.0.0
   provider: ^6.0.0
@@ -31,8 +32,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-  #  fonts:
-  #  - family: Indies
-  #  fonts:
-  #    - asset: fonts/IndieFlower-Regular.ttf
+  assets:
+    - icons/

@@ -33,6 +33,7 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
   }
 
   bool _isButtonTapped = false;
+  // ignore: unused_field
   Future<void>? _delayedFuture;
 
   void _onButtonTap() {
@@ -139,7 +140,17 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
                     child: Text(
                       'SET',
                       style: TextStyle(
-                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                              blurRadius: 4,
+                              color: Color.fromRGBO(0, 0, 0, 0.25),
+                              offset: Offset(0, 4))
+                          // BoxShadow(
+                          //     blurStyle: BlurStyle.inner,
+                          //     blurRadius: 10,
+                          //     color: Color.fromRGBO(0, 0, 0, 0.25))
+                        ],
+                        color: Color.fromRGBO(217, 217, 217, 1),
                         fontWeight: FontWeight.w600,
                         fontSize: 64,
                       ),

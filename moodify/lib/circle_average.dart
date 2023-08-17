@@ -91,7 +91,9 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
 double calculateAverage(List<DataModel> dataList, String period) {
   DateTime now = DateTime.now();
   DateTime startDateTime;
+  DateTime endDateTime = DateTime.now();
   double average;
+  List<DataModel> filteredList = [];
 
   switch (period) {
     case 'Today':
@@ -99,6 +101,8 @@ double calculateAverage(List<DataModel> dataList, String period) {
       break;
     case 'Yesterday':
       startDateTime = DateTime(now.year, now.month, now.day - 1);
+      endDateTime = DateTime(now.year, now.month, now.day);
+
       break;
     case 'Week':
       startDateTime = DateTime(now.year, now.month, now.day - now.weekday + 1);
@@ -115,10 +119,12 @@ double calculateAverage(List<DataModel> dataList, String period) {
         return 0;
       }
   }
-
-  List<DataModel> filteredList = dataList
-      .where((data) => DateTime.parse(data.timestamp).isAfter(startDateTime))
-      .toList();
+  for (var element in dataList) {
+    if (DateTime.parse(element.timestamp).isAfter(startDateTime) &&
+        DateTime.parse(element.timestamp).isBefore(endDateTime)) {
+      filteredList.add(element);
+    }
+  }
 
   if (filteredList.isEmpty) {
     average = 0.0;

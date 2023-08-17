@@ -36,7 +36,7 @@ class _SliderBlockState extends State<SliderBlock> {
                 trackHeight: 5.0,
                 overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
               ),
-              child: Container(
+              child: SizedBox(
                 width: sliderWidth,
                 child: Slider(
                   value: widget.sliderValue,
