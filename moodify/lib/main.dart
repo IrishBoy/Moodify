@@ -59,8 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           child: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: ''),
+              BottomNavigationBarItem(
+                  icon: Image.asset('icons/set_inactive.png'),
+                  activeIcon: Image.asset('icons/set_active.png'),
+                  label: ''),
+              BottomNavigationBarItem(
+                  icon: Image.asset('icons/history_inactive.png'),
+                  activeIcon: Image.asset('icons/history_active.png'),
+                  label: ''),
             ],
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,

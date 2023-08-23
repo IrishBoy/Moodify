@@ -136,7 +136,7 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
                     ),
                   // SET Text
                   Positioned(
-                    top: 150,
+                    top: 130,
                     child: Text(
                       'SET',
                       style: TextStyle(
