@@ -26,6 +26,7 @@ class _SliderBlockState extends State<SliderBlock> {
           children: [
             SizedBox(
               width: sliderWidth,
+              height: 150,
               child: SliderTheme(
                 data: SliderThemeData(
                   thumbShape: RoundSliderThumbShape(
@@ -61,7 +62,7 @@ class _SliderBlockState extends State<SliderBlock> {
                   color: Color.fromRGBO(217, 217, 217, 1),
                   fontWeight:
                       FontWeight.lerp(FontWeight.w600, FontWeight.w700, 0.37),
-                  fontSize: 10,
+                  fontSize: 20,
                 ),
               ),
             ),
@@ -74,7 +75,7 @@ class _SliderBlockState extends State<SliderBlock> {
                   color: Color.fromRGBO(217, 217, 217, 1),
                   fontWeight:
                       FontWeight.lerp(FontWeight.w600, FontWeight.w700, 0.37),
-                  fontSize: 10,
+                  fontSize: 20,
                 ),
               ),
             ),
