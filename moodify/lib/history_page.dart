@@ -34,6 +34,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
             Expanded(
               flex: 2,
               child: Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                  top: BorderSide(
+                      color: Color.fromRGBO(255, 255, 255, 0.65), width: 5),
+                  left: BorderSide(),
+                  right: BorderSide(),
+                  bottom: BorderSide(
+                      color: Color.fromRGBO(255, 255, 255, 0.65), width: 5),
+                )),
                 alignment: Alignment.center,
                 child: Text(
                   '''YOUR\nMOOD\nLEVEL''',

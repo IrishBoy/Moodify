@@ -145,10 +145,6 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
                               blurRadius: 4,
                               color: Color.fromRGBO(0, 0, 0, 0.25),
                               offset: Offset(0, 4))
-                          // BoxShadow(
-                          //     blurStyle: BlurStyle.inner,
-                          //     blurRadius: 10,
-                          //     color: Color.fromRGBO(0, 0, 0, 0.25))
                         ],
                         color: Color.fromRGBO(217, 217, 217, 1),
                         fontWeight: FontWeight.w600,
