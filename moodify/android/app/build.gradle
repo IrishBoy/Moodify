@@ -31,8 +31,6 @@ def keystorePropertiesFile = rootProject.file('gradle/key.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
-print(keystorePropertiesFile.toString())
-print(keystoreProperties)
 
 
 android {
