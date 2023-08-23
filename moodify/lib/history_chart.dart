@@ -52,11 +52,6 @@ class HistoryChart extends StatelessWidget {
       }
     }
 
-    // chartData.forEach((element) {
-    //   print(element.value);
-    //   print(element.timestamp);
-    // });
-
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       reverse: true,

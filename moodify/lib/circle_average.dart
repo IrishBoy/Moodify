@@ -22,7 +22,6 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // print(widget.options[selectedOptionIndex]);
         setState(() {
           selectedOptionIndex =
               (selectedOptionIndex + 1) % widget.options.length;
