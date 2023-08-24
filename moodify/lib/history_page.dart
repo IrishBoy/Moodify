@@ -15,6 +15,50 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     List<DataModel> dataList = Provider.of<DataList>(context).dataList;
+    // List<DataModel> dataEntries = [
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 10, hours: 3)).toString(),
+    //       value: 50),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 3)).toString(),
+    //       value: 25),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 6)).toString(),
+    //       value: 0),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 6)).toString(),
+    //       value: -50), // Yesterday
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
+    //       value: -40), // Day before yesterday
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
+    //       value: 25),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
+    //       value: 0),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
+    //       value: -1),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 1, hours: 3)).toString(),
+    //       value: 50),
+    //   DataModel(
+    //       timestamp:
+    //           DateTime.now().subtract(Duration(days: 2, hours: 3)).toString(),
+    //       value: -50)
+    // ];
+
+    // dataList.addAll(dataEntries);
 
     return Scaffold(
       // appBar: AppBar(

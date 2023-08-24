@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'vars.dart'; // Assuming you have DataModel defined in a separate file
 
-class HistoryChart extends StatelessWidget {
+class HistoryChart extends StatefulWidget {
   final List<DataModel> dataList;
 
   HistoryChart({required this.dataList}) {
@@ -11,46 +11,64 @@ class HistoryChart extends StatelessWidget {
   }
 
   @override
+  State<HistoryChart> createState() => _HistoryChartState();
+}
+
+class _HistoryChartState extends State<HistoryChart> {
+  @override
   Widget build(BuildContext context) {
-    Map<DateTime, Map<int, List<double>>> groupedData = {};
+    // Map<DateTime, Map<int, List<double>>> groupedData = {};
+    final groupedData = <DateTime, List<double>>{};
+    final now = DateTime.now();
 
-    for (var entry in dataList) {
+    // print("DataList: ");
+    // for (var element in dataList) {
+    //   print(element.value);
+    //   print(element.timestamp);
+    // }
+
+    for (var entry in widget.dataList) {
       final timestamp = DateTime.parse(entry.timestamp).toLocal();
-      final dateHourKey = DateTime(
-          timestamp.year, timestamp.month, timestamp.day, timestamp.hour);
-      final value = entry.value;
+      final difference = now.difference(timestamp);
 
-      if (groupedData.containsKey(dateHourKey)) {
-        if (groupedData[dateHourKey]!.containsKey(timestamp.hour)) {
-          groupedData[dateHourKey]![timestamp.hour]!.add(value);
-        } else {
-          groupedData[dateHourKey]![timestamp.hour] = [value];
-        }
+      Duration interval;
+      if (difference.inMinutes < 5) {
+        interval = const Duration(minutes: 5);
+      }
+      if (difference.inMinutes < 60) {
+        interval = const Duration(minutes: 10);
+      } else if (difference.inMinutes < 120) {
+        interval = const Duration(minutes: 15);
+      } else if (difference.inMinutes < 360) {
+        interval = const Duration(minutes: 30);
+      } else if (difference.inHours < 12) {
+        interval = const Duration(hours: 1);
+      } else if (difference.inHours < 24) {
+        interval = const Duration(hours: 3);
       } else {
-        groupedData[dateHourKey] = {
-          timestamp.hour: [value]
-        };
+        interval = const Duration(hours: 4);
       }
-    }
-    final List<ChartSampleData> chartData = [];
-    if (groupedData.length > 1) {
-      // Calculate average values for each date and hour
-
-      groupedData.forEach((dateHourKey, hourValues) {
-        final averageValue = hourValues.entries
-                .map((entry) =>
-                    entry.value.reduce((a, b) => a + b) / entry.value.length)
-                .reduce((a, b) => a + b) /
-            hourValues.length;
-
-        chartData.add(ChartSampleData(dateHourKey, averageValue));
-      });
-    } else {
-      for (var element in dataList) {
-        chartData.add(
-            ChartSampleData(DateTime.parse(element.timestamp), element.value));
+      double hourInterval =
+          interval.inHours.toDouble() == 0 ? 1 : (interval.inHours.toDouble());
+      final roundedTimestamp =
+          DateTime(timestamp.year, timestamp.month, timestamp.day).add(Duration(
+              minutes: 60 *
+                  (timestamp.minute.toDouble() ~/ (hourInterval * 60) + 1)));
+      if (!groupedData.containsKey(roundedTimestamp)) {
+        groupedData[roundedTimestamp] = [];
       }
+      groupedData[roundedTimestamp]!.add(entry.value);
     }
+    final chartData = <ChartSampleData>[];
+
+    groupedData.forEach((timestamp, values) {
+      final averageValue = values.isNotEmpty
+          ? values.reduce((a, b) => a + b) / values.length
+          : 0.0;
+
+      chartData.add(ChartSampleData(timestamp, averageValue));
+    });
+    chartData.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -79,6 +97,8 @@ class HistoryChart extends StatelessWidget {
           series: <SplineSeries<ChartSampleData, DateTime>>[
             SplineSeries<ChartSampleData, DateTime>(
               dataSource: chartData,
+              // splineType: SplineType.cardinal,
+              // cardinalSplineTension: 0.8,
               xValueMapper: (ChartSampleData data, _) => data.timestamp,
               yValueMapper: (ChartSampleData data, _) => data.value,
               color: Color.fromRGBO(255, 255, 255, 0.65),
