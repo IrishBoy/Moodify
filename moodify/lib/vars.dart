@@ -27,3 +27,5 @@ class DataPoint {
 
   DataPoint(this.timestamp, this.value);
 }
+
+const donationUrl = 'https://digitalbabushka.org/coming-soon/';

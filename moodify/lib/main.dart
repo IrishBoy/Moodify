@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'data_saver.dart';
 import 'history_page.dart';
 import 'set_page.dart';
+import 'info_page.dart';
 
 void main() {
   runApp(MoodifyApp());
@@ -33,10 +34,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _pages = [
-    SetScreen(),
-    HistoryScreen(),
-  ];
+  List<Widget> _pages = [SetScreen(), HistoryScreen(), InfoScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -67,6 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Image.asset('icons/history_inactive.png'),
                   activeIcon: Image.asset('icons/history_active.png'),
                   label: ''),
+              BottomNavigationBarItem(
+                  icon: Image.asset('icons/info_inactive.png'),
+                  activeIcon: Image.asset('icons/info_active.png'),
+                  label: '')
             ],
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,
