@@ -9,12 +9,12 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
-  void _openLinkInBrowser() async {
-    Uri uriDonationUrl = Uri.parse(donationUrl);
+  void _openLinkInBrowser(link) async {
+    Uri uriLink = Uri.parse(link);
 
     // Replace with your actual link
-    if (await canLaunchUrl(uriDonationUrl)) {
-      await launchUrl(uriDonationUrl);
+    if (await canLaunchUrl(uriLink)) {
+      await launchUrl(uriLink);
     } else {
       _showErrorSnackBar();
     }
@@ -43,21 +43,23 @@ class _InfoScreenState extends State<InfoScreen> {
               flex: 5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    '''This app\nwas made\nBy\nDigital babushka\nto support project\nyou can donate'''
+                    '''This app was made by Digital babushka to support project you can donate'''
                         .toUpperCase(),
+                    textWidthBasis: TextWidthBasis.longestLine,
                     style: TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 0.65),
                       fontWeight: FontWeight.w600,
                       letterSpacing: 9.0,
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: _openLinkInBrowser,
+                    onPressed: () => _openLinkInBrowser(donationUrl),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(
                           217, 217, 217, 1), // Button background color
@@ -76,6 +78,7 @@ class _InfoScreenState extends State<InfoScreen> {
                   ),
                   SizedBox(height: 20),
                   Text(
+                    textWidthBasis: TextWidthBasis.longestLine,
                     '''or just share this\napp with friends'''.toUpperCase(),
                     style: TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 0.65),
@@ -85,13 +88,45 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: 40),
+                  Text(
+                    textWidthBasis: TextWidthBasis.longestLine,
+                    '''about authors'''.toUpperCase(),
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.65),
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 9.0,
+                      fontSize: 18,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () => _openLinkInBrowser(digitalBabushkaUrl),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(
+                          217, 217, 217, 1), // Button background color
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(20.0), // Rounded corners
+                      ),
+                    ),
+                    child: Text('digital babushka'.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                          fontWeight: FontWeight.w600,
+                          // letterSpacing: 32.0,
+                          fontSize: 18,
+                        )),
+                  ),
                 ],
               ),
             ),
             Expanded(
               flex: 2,
               child: Container(
-                padding: EdgeInsets.only(bottom: 40.0),
+                padding: EdgeInsets.only(bottom: 20.0),
                 decoration: BoxDecoration(
                     border: Border(
                   top: BorderSide(
@@ -103,14 +138,17 @@ class _InfoScreenState extends State<InfoScreen> {
                 )),
                 alignment: Alignment.center,
                 child: Text(
-                  '''ABOUT\nAPP''',
+                  textWidthBasis: TextWidthBasis.longestLine,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  "About Moodify".trim().toUpperCase(),
                   style: TextStyle(
                     color: Color.fromRGBO(255, 255, 255, 0.65),
                     fontWeight: FontWeight.w600,
-                    letterSpacing: 32.0,
+                    // letterSpacing: 32.0,
                     fontSize: 50,
                   ),
-                  textAlign: TextAlign.center,
+                  // textAlign: TextAlign.center,
                 ),
               ),
             ),
@@ -118,11 +156,6 @@ class _InfoScreenState extends State<InfoScreen> {
               flex: 1,
               child: Padding(
                 padding: EdgeInsets.only(top: 0, bottom: 40),
-                // child: CircularOptionsWheel(
-                //   options: ['Today', 'Yesterday', 'Week', 'Month', 'All Time'],
-                //   dataList: dataList,
-                //   // calculateAverage(dataList), // Implement this function
-                // ),
               ),
             ),
           ],

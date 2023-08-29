@@ -29,3 +29,5 @@ class DataPoint {
 }
 
 const donationUrl = 'https://digitalbabushka.org/coming-soon/';
+
+const digitalBabushkaUrl = 'https://digitalbabushka.org';

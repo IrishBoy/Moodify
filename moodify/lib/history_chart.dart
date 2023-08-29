@@ -89,8 +89,8 @@ class _HistoryChartState extends State<HistoryChart> {
               autoScrollingDeltaType: DateTimeIntervalType.days,
               crossesAt: 0),
           primaryYAxis: NumericAxis(
-            visibleMaximum: 200,
-            visibleMinimum: -200,
+            visibleMaximum: 80,
+            visibleMinimum: -80,
             isVisible: false,
             majorGridLines: MajorGridLines(width: 0),
           ),
