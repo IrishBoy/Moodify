@@ -22,7 +22,7 @@ class _HistoryChartState extends State<HistoryChart> {
     final now = DateTime.now();
 
     // print("DataList: ");
-    // for (var element in dataList) {
+    // for (var element in widget.dataList) {
     //   print(element.value);
     //   print(element.timestamp);
     // }
@@ -32,10 +32,17 @@ class _HistoryChartState extends State<HistoryChart> {
       final difference = now.difference(timestamp);
 
       Duration interval;
-      if (difference.inMinutes < 5) {
+      if (difference.inSeconds < 15) {
+        interval = const Duration(seconds: 15);
+      } else if (difference.inSeconds < 30) {
+        interval = const Duration(seconds: 30);
+      } else if (difference.inSeconds < 60) {
+        interval = const Duration(seconds: 60);
+      } else if (difference.inMinutes < 2) {
+        interval = const Duration(minutes: 2);
+      } else if (difference.inMinutes < 5) {
         interval = const Duration(minutes: 5);
-      }
-      if (difference.inMinutes < 60) {
+      } else if (difference.inMinutes < 60) {
         interval = const Duration(minutes: 10);
       } else if (difference.inMinutes < 120) {
         interval = const Duration(minutes: 15);
@@ -48,12 +55,11 @@ class _HistoryChartState extends State<HistoryChart> {
       } else {
         interval = const Duration(hours: 4);
       }
-      double hourInterval =
-          interval.inHours.toDouble() == 0 ? 1 : (interval.inHours.toDouble());
-      final roundedTimestamp =
-          DateTime(timestamp.year, timestamp.month, timestamp.day).add(Duration(
-              minutes: 60 *
-                  (timestamp.minute.toDouble() ~/ (hourInterval * 60) + 1)));
+      final roundedTimestamp = now.subtract(interval);
+      // print(roundedTimestamp);
+      // print(interval.toString());
+      // print(entry.timestamp.toString());
+      // print(entry.value);
       if (!groupedData.containsKey(roundedTimestamp)) {
         groupedData[roundedTimestamp] = [];
       }
@@ -69,6 +75,10 @@ class _HistoryChartState extends State<HistoryChart> {
       chartData.add(ChartSampleData(timestamp, averageValue));
     });
     chartData.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+    // for (var element in chartData) {
+    //   print(element.value);
+    //   print(element.timestamp);
+    // }
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -89,8 +99,8 @@ class _HistoryChartState extends State<HistoryChart> {
               autoScrollingDeltaType: DateTimeIntervalType.days,
               crossesAt: 0),
           primaryYAxis: NumericAxis(
-            visibleMaximum: 80,
-            visibleMinimum: -80,
+            visibleMaximum: 200,
+            visibleMinimum: -200,
             isVisible: false,
             majorGridLines: MajorGridLines(width: 0),
           ),
@@ -98,7 +108,7 @@ class _HistoryChartState extends State<HistoryChart> {
             SplineSeries<ChartSampleData, DateTime>(
               dataSource: chartData,
               // splineType: SplineType.cardinal,
-              // cardinalSplineTension: 0.8,
+              cardinalSplineTension: 0.8,
               xValueMapper: (ChartSampleData data, _) => data.timestamp,
               yValueMapper: (ChartSampleData data, _) => data.value,
               color: Color.fromRGBO(255, 255, 255, 0.65),

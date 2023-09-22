@@ -31,3 +31,6 @@ class DataPoint {
 const donationUrl = 'https://digitalbabushka.org/coming-soon/';
 
 const digitalBabushkaUrl = 'https://digitalbabushka.org';
+
+const maxSamplesPerPeriod = 8;
+const minSamplesPerPeriod = 3;
