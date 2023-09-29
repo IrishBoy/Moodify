@@ -1,8 +1,14 @@
+// import 'package:uuid/uuid.dart';
+
+// var uuid = Uuid();
+
 class DataModel {
+  final String id;
   final double value;
   final String timestamp;
 
-  DataModel({required this.value, required this.timestamp});
+  const DataModel(
+      {required this.id, required this.value, required this.timestamp});
 
   // Convert DataModel to JSON
   Map<String, dynamic> toJson() {
@@ -12,20 +18,18 @@ class DataModel {
     };
   }
 
-  // Create DataModel instance from JSON
-  factory DataModel.fromJson(Map<String, dynamic> json) {
-    return DataModel(
-      value: json['value'],
-      timestamp: json['timestamp'],
-    );
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'timestamp': timestamp,
+      'value': value,
+    };
   }
-}
 
-class DataPoint {
-  final DateTime timestamp;
-  final double value;
-
-  DataPoint(this.timestamp, this.value);
+  @override
+  String toString() {
+    return 'Dog{id: $id, timestamp: $timestamp, value: $value}';
+  }
 }
 
 const donationUrl = 'https://digitalbabushka.org/coming-soon/';

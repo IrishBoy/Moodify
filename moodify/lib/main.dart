@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'data_saver.dart';
+// import 'data_saver.dart';
 import 'history_page.dart';
 import 'set_page.dart';
 import 'info_page.dart';
+import 'sql_connector.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final dbHelper = DatabaseHelper(); // Create an instance of the DatabaseHelper
+  await dbHelper.initializeDatabase();
   runApp(MoodifyApp());
 }
 
 class MoodifyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<DataList>(
-      create: (_) =>
-          DataList()..loadData(), // Initialize the provider and load data
-      child: MaterialApp(
-        title: 'Slider App',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: MyHomePage(),
-      ),
+    final dbHelper =
+        DatabaseHelper(); // Create an instance of the DatabaseHelper
+    dbHelper.initializeDatabase(); // Initialize the database
+
+    return MaterialApp(
+      title: 'Slider App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyHomePage(),
     );
   }
 }
@@ -38,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      Provider.of<DataList>(context, listen: false).loadData();
+      // Provider.of<DataList>(context, listen: false).loadData();
       _selectedIndex = index;
     });
   }

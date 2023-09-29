@@ -2,29 +2,39 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'data_saver.dart';
+// import 'data_saver.dart';
 import 'slider.dart';
 import 'vars.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
+import 'sql_connector.dart';
+
+var uuid = Uuid();
 
 class SetScreen extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _SetScreenState createState() => _SetScreenState();
+
+  // dbHelper.initializeDatabase();
 }
 
 class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
+  final dbHelper = DatabaseHelper(); // Create an instance of the DatabaseHelper
 // Array to store slider values and their timestamps
 
   double _currentSliderValue = 0; // Variable to store the current slider value
 
   void _storeValue() async {
     String timestamp = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+    String uuid = Uuid().v1();
     DataModel data =
-        DataModel(value: _currentSliderValue, timestamp: timestamp);
+        DataModel(id: uuid, value: _currentSliderValue, timestamp: timestamp);
 
     // Use the provider to access the data and save it
-    Provider.of<DataList>(context, listen: false).addData(data);
+    dbHelper.insertDataModel(data);
+
+    // Provider.of<DataList>(context, listen: false).addData(data);
 
     // Clear the slider value after storing
     // setState(() {

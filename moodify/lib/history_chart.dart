@@ -17,7 +17,6 @@ class HistoryChart extends StatefulWidget {
 class _HistoryChartState extends State<HistoryChart> {
   @override
   Widget build(BuildContext context) {
-    // Map<DateTime, Map<int, List<double>>> groupedData = {};
     final groupedData = <DateTime, List<double>>{};
     final now = DateTime.now();
 
@@ -56,6 +55,9 @@ class _HistoryChartState extends State<HistoryChart> {
         interval = const Duration(hours: 4);
       }
       final roundedTimestamp = now.subtract(interval);
+
+      // final roundedTimestamp = DateTime(
+      //     timestamp.year, timestamp.month, timestamp.day, timestamp.hour);
       // print(roundedTimestamp);
       // print(interval.toString());
       // print(entry.timestamp.toString());
