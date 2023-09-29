@@ -28,36 +28,38 @@ class _HistoryChartState extends State<HistoryChart> {
 
     for (var entry in widget.dataList) {
       final timestamp = DateTime.parse(entry.timestamp).toLocal();
-      final difference = now.difference(timestamp);
+      // final difference = now.difference(timestamp);
 
-      Duration interval;
-      if (difference.inSeconds < 15) {
-        interval = const Duration(seconds: 15);
-      } else if (difference.inSeconds < 30) {
-        interval = const Duration(seconds: 30);
-      } else if (difference.inSeconds < 60) {
-        interval = const Duration(seconds: 60);
-      } else if (difference.inMinutes < 2) {
-        interval = const Duration(minutes: 2);
-      } else if (difference.inMinutes < 5) {
-        interval = const Duration(minutes: 5);
-      } else if (difference.inMinutes < 60) {
-        interval = const Duration(minutes: 10);
-      } else if (difference.inMinutes < 120) {
-        interval = const Duration(minutes: 15);
-      } else if (difference.inMinutes < 360) {
-        interval = const Duration(minutes: 30);
-      } else if (difference.inHours < 12) {
-        interval = const Duration(hours: 1);
-      } else if (difference.inHours < 24) {
-        interval = const Duration(hours: 3);
-      } else {
-        interval = const Duration(hours: 4);
-      }
-      final roundedTimestamp = now.subtract(interval);
+      // Duration interval;
+      // if (difference.inSeconds < 15) {
+      //   interval = const Duration(seconds: 15);
+      // } else if (difference.inSeconds < 30) {
+      //   interval = const Duration(seconds: 30);
+      // } else if (difference.inSeconds < 60) {
+      //   interval = const Duration(seconds: 60);
+      // } else if (difference.inMinutes < 2) {
+      //   interval = const Duration(minutes: 2);
+      // } else if (difference.inMinutes < 5) {
+      //   interval = const Duration(minutes: 5);
+      // } else if (difference.inMinutes < 60) {
+      //   interval = const Duration(minutes: 10);
+      // } else if (difference.inMinutes < 120) {
+      //   interval = const Duration(minutes: 15);
+      // } else if (difference.inMinutes < 360) {
+      //   interval = const Duration(minutes: 30);
+      // } else if (difference.inHours < 12) {
+      //   interval = const Duration(hours: 1);
+      // } else if (difference.inHours < 24) {
+      //   interval = const Duration(hours: 3);
+      // } else {
+      //   interval = const Duration(hours: 4);
+      // }
+      // final roundedTimestamp = now.subtract(interval);
 
-      // final roundedTimestamp = DateTime(
-      //     timestamp.year, timestamp.month, timestamp.day, timestamp.hour);
+      // print(entry.timestamp, entry.value, );
+
+      final roundedTimestamp = DateTime(
+          timestamp.year, timestamp.month, timestamp.day, timestamp.hour);
       // print(roundedTimestamp);
       // print(interval.toString());
       // print(entry.timestamp.toString());
@@ -67,6 +69,7 @@ class _HistoryChartState extends State<HistoryChart> {
       }
       groupedData[roundedTimestamp]!.add(entry.value);
     }
+
     final chartData = <ChartSampleData>[];
 
     groupedData.forEach((timestamp, values) {
@@ -101,19 +104,20 @@ class _HistoryChartState extends State<HistoryChart> {
               autoScrollingDeltaType: DateTimeIntervalType.days,
               crossesAt: 0),
           primaryYAxis: NumericAxis(
-            visibleMaximum: 200,
-            visibleMinimum: -200,
+            visibleMaximum: 100,
+            visibleMinimum: -100,
             isVisible: false,
             majorGridLines: MajorGridLines(width: 0),
           ),
           series: <SplineSeries<ChartSampleData, DateTime>>[
             SplineSeries<ChartSampleData, DateTime>(
               dataSource: chartData,
-              // splineType: SplineType.cardinal,
-              cardinalSplineTension: 0.8,
+              splineType: SplineType.monotonic,
+              // cardinalSplineTension: 0.01  ,
               xValueMapper: (ChartSampleData data, _) => data.timestamp,
               yValueMapper: (ChartSampleData data, _) => data.value,
               color: Color.fromRGBO(255, 255, 255, 0.65),
+              // markerSettings: MarkerSettings(isVisible: true)
             ),
           ],
         ),

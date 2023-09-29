@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-// import 'data_saver.dart';
 import 'history_page.dart';
 import 'set_page.dart';
 import 'info_page.dart';

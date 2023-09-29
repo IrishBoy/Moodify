@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'circle_average.dart';
 // import 'data_saver.dart';
 import 'package:uuid/uuid.dart';
@@ -32,13 +31,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final dbHelper = DatabaseHelper();
     // var uuid = Uuid();
-    // List<DataModel> data = DataList.loadDataByName('dataKey');
-    // List<DataModel> dataList = Provider.of<DataList>(context).dataList;
-    // final List<DataModel> dataList =  await dbHelper.allDataModel();
     // List<DataModel> dataEntries = [
     //   DataModel(
+    //       // ignore: deprecated_member_use
     //       id: uuid.v1(options: {
     //         'mSecs': DateTime.now()
     //             .subtract(Duration(days: 10, hours: 3))
@@ -48,38 +44,65 @@ class _HistoryScreenState extends State<HistoryScreen> {
     //           DateTime.now().subtract(Duration(days: 10, hours: 3)).toString(),
     //       value: 50),
     //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 2, hours: 3))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 2, hours: 3)).toString(),
     //       value: 25),
     //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 2, hours: 6))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 2, hours: 6)).toString(),
     //       value: 0),
     //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 2, hours: 6))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 2, hours: 6)).toString(),
     //       value: -50), // Yesterday
     //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 2, hours: 9))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
     //       value: -40), // Day before yesterday
     //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 2, hours: 9))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
     //       value: 25),
     //   DataModel(
-    //       timestamp:
-    //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
-    //       value: 0),
-    //   DataModel(
-    //       timestamp:
-    //           DateTime.now().subtract(Duration(days: 2, hours: 9)).toString(),
-    //       value: -1),
-    //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 1, hours: 3))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 1, hours: 3)).toString(),
     //       value: 50),
     //   DataModel(
+    //       id: uuid.v1(options: {
+    //         'mSecs': DateTime.now()
+    //             .subtract(Duration(days: 2, hours: 3))
+    //             .millisecondsSinceEpoch
+    //       }),
     //       timestamp:
     //           DateTime.now().subtract(Duration(days: 2, hours: 3)).toString(),
     //       value: -50)
