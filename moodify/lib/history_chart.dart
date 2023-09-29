@@ -72,6 +72,13 @@ class _HistoryChartState extends State<HistoryChart> {
 
     final chartData = <ChartSampleData>[];
 
+    if (groupedData.length <= 1) {
+      for (var entry in widget.dataList) {
+        chartData.add(ChartSampleData(
+            DateTime.parse(entry.timestamp).toLocal(), entry.value));
+      }
+    }
+
     groupedData.forEach((timestamp, values) {
       final averageValue = values.isNotEmpty
           ? values.reduce((a, b) => a + b) / values.length
@@ -117,7 +124,6 @@ class _HistoryChartState extends State<HistoryChart> {
               xValueMapper: (ChartSampleData data, _) => data.timestamp,
               yValueMapper: (ChartSampleData data, _) => data.value,
               color: Color.fromRGBO(255, 255, 255, 0.65),
-              // markerSettings: MarkerSettings(isVisible: true)
             ),
           ],
         ),
