@@ -18,52 +18,12 @@ class _HistoryChartState extends State<HistoryChart> {
   @override
   Widget build(BuildContext context) {
     final groupedData = <DateTime, List<double>>{};
-    final now = DateTime.now();
-
-    // print("DataList: ");
-    // for (var element in widget.dataList) {
-    //   print(element.value);
-    //   print(element.timestamp);
-    // }
 
     for (var entry in widget.dataList) {
       final timestamp = DateTime.parse(entry.timestamp).toLocal();
-      // final difference = now.difference(timestamp);
-
-      // Duration interval;
-      // if (difference.inSeconds < 15) {
-      //   interval = const Duration(seconds: 15);
-      // } else if (difference.inSeconds < 30) {
-      //   interval = const Duration(seconds: 30);
-      // } else if (difference.inSeconds < 60) {
-      //   interval = const Duration(seconds: 60);
-      // } else if (difference.inMinutes < 2) {
-      //   interval = const Duration(minutes: 2);
-      // } else if (difference.inMinutes < 5) {
-      //   interval = const Duration(minutes: 5);
-      // } else if (difference.inMinutes < 60) {
-      //   interval = const Duration(minutes: 10);
-      // } else if (difference.inMinutes < 120) {
-      //   interval = const Duration(minutes: 15);
-      // } else if (difference.inMinutes < 360) {
-      //   interval = const Duration(minutes: 30);
-      // } else if (difference.inHours < 12) {
-      //   interval = const Duration(hours: 1);
-      // } else if (difference.inHours < 24) {
-      //   interval = const Duration(hours: 3);
-      // } else {
-      //   interval = const Duration(hours: 4);
-      // }
-      // final roundedTimestamp = now.subtract(interval);
-
-      // print(entry.timestamp, entry.value, );
 
       final roundedTimestamp = DateTime(
           timestamp.year, timestamp.month, timestamp.day, timestamp.hour);
-      // print(roundedTimestamp);
-      // print(interval.toString());
-      // print(entry.timestamp.toString());
-      // print(entry.value);
       if (!groupedData.containsKey(roundedTimestamp)) {
         groupedData[roundedTimestamp] = [];
       }
@@ -87,10 +47,6 @@ class _HistoryChartState extends State<HistoryChart> {
       chartData.add(ChartSampleData(timestamp, averageValue));
     });
     chartData.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-    // for (var element in chartData) {
-    //   print(element.value);
-    //   print(element.timestamp);
-    // }
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
