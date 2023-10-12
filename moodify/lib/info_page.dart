@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodify/sql_connector.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'vars.dart';
@@ -9,6 +10,14 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
+  late DatabaseHelper dbHelper; // Define DatabaseHelper instance
+
+  @override
+  void initState() {
+    super.initState();
+    dbHelper = DatabaseHelper(); // Initialize DatabaseHelper instance
+  }
+
   void _openLinkInBrowser(link) async {
     Uri uriLink = Uri.parse(link);
 
@@ -29,6 +38,10 @@ class _InfoScreenState extends State<InfoScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _removeAllMeasurements() async {
+    await dbHelper.deleteAllDataModels();
   }
 
   @override
@@ -121,6 +134,36 @@ class _InfoScreenState extends State<InfoScreen> {
                       ),
                     ),
                     child: Text('digital babushka'.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        )),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.1,
+                    child: Text(
+                      textWidthBasis: TextWidthBasis.longestLine,
+                      '''You also can reset your measurements'''.toUpperCase(),
+                      style: TextStyle(
+                        color: Color.fromRGBO(255, 255, 255, 0.65),
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 9.0,
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _removeAllMeasurements(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(217, 217, 217, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    child: Text('Remove all the data'.toUpperCase(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color.fromRGBO(0, 0, 0, 1),

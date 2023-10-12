@@ -59,4 +59,8 @@ class DatabaseHelper {
       whereArgs: [id],
     );
   }
+
+  Future<void> deleteAllDataModels() async {
+    await _database.delete('measurements');
+  }
 }
