@@ -76,94 +76,98 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: ListView(
         children: [
-          Expanded(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                '''HOW\nDO\nYOU\nFEEL?''',
-                style: GoogleFonts.inter(
-                  color: Color.fromRGBO(255, 255, 255, 0.65),
-                  fontWeight:
-                      FontWeight.lerp(FontWeight.w600, FontWeight.w700, 0.37),
-                  // textAlignCenter: TextAlignCenter,
-                  letterSpacing: 32.0,
-                  fontSize: 64,
+          Container(
+            color: Colors.black,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: screenHeight * 0.4,
+                  child: Text(
+                    '''how\ndo\nyou\nfeel?'''.toUpperCase(),
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.65),
+                      fontWeight: FontWeight.lerp(
+                          FontWeight.w600, FontWeight.w700, 0.37),
+                      letterSpacing: 32.0,
+                      fontSize: 60,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              alignment: Alignment.center,
-              child: SliderBlock(
-                sliderValue: _currentSliderValue,
-                onChanged: (newValue) {
-                  setState(() {
-                    _currentSliderValue =
-                        newValue; // Update the current slider value
-                  });
-                },
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              alignment: Alignment.center,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  // Circle Button with Overlay
-                  Positioned(
-                    top: 10,
-                    child: GestureDetector(
-                      onTap: _onButtonTap,
-                      // onTapUp: _onTapUp,
-                      child: CircleAvatar(
-                        radius: 65,
-                        backgroundColor: Color.fromRGBO(217, 217, 217, 1),
-                      ),
+                SizedBox(
+                  height: screenHeight * 0.2,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: SliderBlock(
+                      sliderValue: _currentSliderValue,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _currentSliderValue =
+                              newValue; // Update the current slider value
+                        });
+                      },
                     ),
                   ),
-                  if (_isButtonTapped)
-                    Positioned(
-                      top: 5,
-                      child: Container(
-                        width: 140,
-                        height: 140,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.3),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.3,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Positioned(
+                          top: 10,
+                          child: GestureDetector(
+                            onTap: _onButtonTap,
+                            child: CircleAvatar(
+                              radius: 65,
+                              backgroundColor: Color.fromRGBO(217, 217, 217, 1),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  // SET Text
-                  Positioned(
-                    top: 130,
-                    child: Text(
-                      'SET',
-                      style: TextStyle(
-                        shadows: [
-                          Shadow(
-                              blurRadius: 4,
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              offset: Offset(0, 4))
-                        ],
-                        color: Color.fromRGBO(217, 217, 217, 1),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 64,
-                      ),
+                        if (_isButtonTapped)
+                          Positioned(
+                            top: 5,
+                            child: Container(
+                              width: 140,
+                              height: 140,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white.withOpacity(0.3),
+                              ),
+                            ),
+                          ),
+                        Positioned(
+                          top: 130,
+                          child: Text(
+                            'SET',
+                            style: TextStyle(
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 4,
+                                  color: Color.fromRGBO(0, 0, 0, 0.25),
+                                  offset: Offset(0, 4),
+                                )
+                              ],
+                              color: Color.fromRGBO(217, 217, 217, 1),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 64,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

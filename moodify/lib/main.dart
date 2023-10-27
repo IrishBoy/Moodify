@@ -47,7 +47,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
+      height: screenHeight * 0.1,
       color: Color.fromRGBO(0, 0, 0, 100),
       child: Scaffold(
         extendBody: true,
