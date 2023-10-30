@@ -144,7 +144,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       )),
                       alignment: Alignment.center,
                       child: Text(
-                        '''YOUR\nMOOD\nLEVEL''',
+                        ''' YOUR\n MOOD\n LEVEL''',
                         style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 0.65),
                           fontWeight: FontWeight.w600,

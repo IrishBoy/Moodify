@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'vars.dart';
 
@@ -37,7 +38,6 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
                 angle: 2 * pi * (i / widget.options.length - rotationAngle),
                 child: Column(
                   children: [
-                    // SizedBox(height: 10),
                     Transform.rotate(
                       angle: -2 * pi * (i / widget.options.length),
                       child: Text(
@@ -45,7 +45,7 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
                         style: TextStyle(
                           color: Colors.white.withOpacity(
                               i == selectedOptionIndex ? 1.0 : 0.5),
-                          fontSize: i == selectedOptionIndex ? 30 : 15,
+                          fontSize: i == selectedOptionIndex ? 25 : 15,
                         ),
                       ),
                     ),
