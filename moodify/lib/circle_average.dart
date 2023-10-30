@@ -37,7 +37,7 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
                 angle: 2 * pi * (i / widget.options.length - rotationAngle),
                 child: Column(
                   children: [
-                    SizedBox(height: 16),
+                    // SizedBox(height: 10),
                     Transform.rotate(
                       angle: -2 * pi * (i / widget.options.length),
                       child: Text(
@@ -45,7 +45,7 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
                         style: TextStyle(
                           color: Colors.white.withOpacity(
                               i == selectedOptionIndex ? 1.0 : 0.5),
-                          fontSize: i == selectedOptionIndex ? 18 : 14,
+                          fontSize: i == selectedOptionIndex ? 30 : 15,
                         ),
                       ),
                     ),
@@ -59,8 +59,6 @@ class _CircularOptionsWheelState extends State<CircularOptionsWheel> {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Color.fromRGBO(0, 0, 0, 1),
-                // border: Border.all(
-                //     color: Color.fromRGBO(217, 217, 217, 0.65), width: 8),
                 boxShadow: [
                   BoxShadow(
                       color: Color.fromRGBO(217, 217, 217, 0.65),

@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:provider/provider.dart';
 // import 'data_saver.dart';
 import 'slider.dart';
 import 'vars.dart';
@@ -90,7 +90,7 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
                 SizedBox(
                   height: screenHeight * 0.4,
                   child: Text(
-                    '''how\ndo\nyou\nfeel?'''.toUpperCase(),
+                    ''' how\n do\n you\n feel?'''.toUpperCase(),
                     style: TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 0.65),
                       fontWeight: FontWeight.lerp(
@@ -148,7 +148,7 @@ class _SetScreenState extends State<SetScreen> with TickerProviderStateMixin {
                         Positioned(
                           top: 130,
                           child: Text(
-                            'SET',
+                            ' SET',
                             style: TextStyle(
                               shadows: [
                                 Shadow(
