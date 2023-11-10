@@ -54,6 +54,7 @@ class _HistoryChartState extends State<HistoryChart> {
       child: SizedBox(
         width: 7 * 24 * 15,
         child: SfCartesianChart(
+          key: UniqueKey(),
           plotAreaBorderWidth: 0,
           primaryXAxis: DateTimeAxis(
               axisLine: AxisLine(

@@ -20,8 +20,6 @@ class MoodifyApp extends StatelessWidget {
     dbHelper.initializeDatabase(); // Initialize the database
 
     return MaterialApp(
-      title: 'Slider App',
-      theme: ThemeData(primarySwatch: Colors.blue),
       home: MyHomePage(),
     );
   }
@@ -40,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      // Provider.of<DataList>(context, listen: false).loadData();
       _selectedIndex = index;
     });
   }
